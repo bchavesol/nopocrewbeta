@@ -1,0 +1,3 @@
+import{auth,remote,reply,friendly,originOK,seed}from'../lib/cloud.js';
+import{validate}from'../lib/validate.js';
+export default async function handler(req,res){if(req.method!=='POST')return reply(res,405,{error:'Método não permitido.'});if(!originOK(req))return reply(res,403,{error:'Origem inválida.'});try{let{token}=await auth(req,res),project=typeof req.body==='string'?JSON.parse(req.body):req.body;let state=await remote('/rest/v1/rpc/beta_load',{token,method:'POST',body:{seed:seed()}});validate(project,state);let saved=await remote('/rest/v1/rpc/beta_save_project',{token,method:'POST',body:{project}});return reply(res,200,saved)}catch(e){let status=e.status===401?401:e.message?.includes('VERSION_CONFLICT')?409:400;return reply(res,status,{error:friendly(e)})}}

@@ -1,0 +1,2 @@
+import{auth,remote,reply,friendly,seed}from'../lib/cloud.js';
+export default async function handler(req,res){if(req.method!=='GET')return reply(res,405,{error:'Método não permitido.'});try{let{token,user}=await auth(req,res);let state=await remote('/rest/v1/rpc/beta_load',{token,method:'POST',body:{seed:seed()}});return reply(res,200,{...state,user:{email:user.email}})}catch(e){return reply(res,e.status===401?401:503,{error:friendly(e)})}}
