@@ -13,7 +13,7 @@ Aplicação independente para testar o novo fluxo **Projetos → ficha completa*
 
 Projetos com referência única, filtros, pesquisa e CSV; ficha com Geral, Agenda, Equipa e funções, Agendamento, Transporte, Despesas, Documentos e Histórico. Sete fases com horários, necessidades por função, atribuições, cachets previstos e conflitos. Planeamento semanal e calendário mensal. Documentos por link, exportação CSV e impressão pelo navegador.
 
-Os dados guardam na base de dados online. Cada conta tem um espaço de demonstração separado; nesta primeira fase, cada titular é administrador apenas do próprio espaço. Não há partilha de equipas entre contas nem os perfis operacionais da app atual. O diretório de técnicos contém exemplos fictícios.
+Os dados guardam na base de dados online. Cada conta tem um espaço de demonstração separado; nesta primeira fase, cada titular é administrador apenas do próprio espaço. Não há partilha de equipas entre contas nem os perfis operacionais da app atual. O diretório começa com exemplos fictícios e permite criar e editar técnicos internos e freelancers, marcar favoritos e inativar fichas sem apagar as atribuições históricas. As fichas não criam contas de login nem enviam convites.
 
 ## Configuração no Vercel
 
@@ -33,3 +33,9 @@ Testes automatizados: `npm test` (Node.js 22+). Não é necessário instalar dep
 ## Limites da Beta
 
 Sem importação de dados da app atual, sem emails operacionais, sem validações de folgas/férias ou cachets, sem upload de anexos e sem perfis partilhados de administrador/gestor/financeiro. Os valores de despesas são previsões; exportações são CSV compatível com Excel. O objetivo é validar o novo fluxo de projetos antes de integrar as regras operacionais completas.
+
+## Equipa, financeiro e datas
+
+A área Equipa inclui pesquisa, filtros por setor/estado, favoritos, contactos e valores de referência opcionais. Valores em branco ficam por definir; zero é um valor definido. A área Financeiro reúne cachets fixos por fase e despesas manuais, com filtros por projeto/período, vistas por projeto e técnico, e CSV. Cachets não definidos estão assinalados. As despesas manuais não são repartidas por técnicos. Horas extra são referências, sem cálculo automático.
+
+Datas apresentadas e preenchidas em DD/MM/AAAA; horários em DD/MM/AAAA HH:MM. Os dados internos conservam ISO para validação e ordenação.
