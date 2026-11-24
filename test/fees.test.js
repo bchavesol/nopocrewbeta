@@ -7,6 +7,7 @@ test('legacy fixed fees are retained until configured',()=>{let p=fixture();for(
 test('deleted projects excluded from all financial totals',()=>{let p=fixture();p.deletedAt=new Date().toISOString();let d=financeData({projects:[p],staff});assert.equal(d.total,0);assert.equal(d.byProject.length,0)});
 test('Lisbon DST uses elapsed hours',()=>{assert.equal(continuousHours('2026-03-29T00:00','2026-03-29T04:00'),3);assert.equal(continuousHours('2026-10-25T00:00','2026-10-25T04:00'),5)});
 test('project and crew aggregate match overtime amount and export data',()=>{let d=financeData({projects:[fixture()],staff});assert.equal(d.total,150);assert.equal(d.byProject[0].total,150);assert.equal(d.byCrew[0].total,150);assert.equal(d.labor[0].extraHours,2.5)});
-import{validate}from'../lib/validate.js';import{seed}from'../lib/cloud.js';
+import{validate}from'../lib/validate.js';import{seed}from'./fixtures.js';
 test('trash frees allocations, restoration checks new conflicts',()=>{let state=seed(),a=state.projects[0];let ph=a.phases[0];ph.functions[0].crew=['t1'];let b=structuredClone(a);b.id='other';b.reference='OTHER';b.phases[0].id='otherphase';state.projects.push(b);a.deletedAt=new Date().toISOString();assert.equal(validate(b,state),true);let restored=structuredClone(a);restored.deletedAt=null;assert.throws(()=>validate(restored,state),/Conflito/);assert.equal(validate(a,state),true)});
 test('jornada snapshots must agree across phases',()=>{let state=seed(),p=state.projects[0];p.phases.forEach(ph=>{ph.functions[0].crew=['t1'];ph.functions[0].feeTerms={t1:{sessionId:'j1',base:100,includedHours:8,overtimeRate:20}}});p.phases[1].functions[0].feeTerms.t1.base=150;assert.throws(()=>validate(p,state),/mesmos valores/)});
+

@@ -1,5 +1,5 @@
 import test from'node:test';import assert from'node:assert/strict';
-import{seed,originOK}from'../lib/cloud.js';import{validate}from'../lib/validate.js';
+import{originOK}from'../lib/cloud.js';import{seed}from'./fixtures.js';import{validate}from'../lib/validate.js';
 import stateHandler from'../api/state.js';import projectHandler from'../api/projects.js';
 const copy=o=>structuredClone(o);
 test('demo projects validate and have separate references',()=>{let s=seed();assert.equal(s.projects.length,3);for(let p of s.projects)assert.equal(validate(p,s),true);assert.equal(new Set(s.projects.map(p=>p.reference)).size,3)});
@@ -11,3 +11,4 @@ test('reject cross-project overlapping allocation',()=>{let s=seed(),p=copy(s.pr
 test('require same-origin mutations',()=>{assert.equal(originOK({method:'POST',headers:{origin:'https://attacker.invalid',host:'beta.vercel.app'}}),false);assert.equal(originOK({method:'POST',headers:{origin:'https://beta.vercel.app',host:'beta.vercel.app'}}),true)});
 function res(){return{headers:{},code:0,body:null,setHeader(k,v){this.headers[k]=v},status(s){this.code=s;return this},json(b){this.body=b;return this}}}
 test('anonymous users cannot read or write projects',async()=>{let r=res();await stateHandler({method:'GET',headers:{}},r);assert.equal(r.code,401);r=res();await projectHandler({method:'POST',headers:{origin:'https://beta.vercel.app',host:'beta.vercel.app'}},r);assert.equal(r.code,401)});
+

@@ -52,3 +52,6 @@ O cookie do dispositivo é renovado em cada consulta, com a duração máxima de
 
 ## Importação NOPOcrew
 Projetos, equipa e escalas são convertidos para o formato da Beta; os registos originais ficam preservados em sourceArchive no espaço privado. A aba Dados importados permite consultar disponibilidades, saldos, horas, confirmações, aprovações, notificações e auditoria. Os IDs e os estados apagados mantêm correspondência com a origem. PDFs permanecem ligados aos downloads autenticados da NOPOcrew; não foram tornados públicos. As contas, palavras-passe, sessões e chaves da app original não são copiadas. Nenhum acesso é concedido automaticamente aos técnicos. A cópia é pontual, sem sincronização automática. Dados reais nunca são guardados no repositório.
+
+## Calendário Beta 0.6
+Segue a lógica da NOPOcrew: Tudo, Só projetos, Equipa interna; calendário e matriz; períodos de semana, 15 dias e mês; filtros de projeto, técnico, setor e confirmação. Faixas juntam apenas dias ativos consecutivos. Técnicos são contados uma vez por dia. Fins de semana e feriados nacionais, armazém, preparação, folgas pendentes/validadas, férias, baixa médica e indisponibilidade têm indicação própria. Clicar num projeto abre fases e equipa do dia; marcações importadas são de consulta. O calendário não sincroniza automaticamente a app original.
