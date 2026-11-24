@@ -39,3 +39,11 @@ Sem importação de dados da app atual, sem emails operacionais, sem validaçõe
 A área Equipa inclui pesquisa, filtros por setor/estado, favoritos, contactos e valores de referência opcionais. Valores em branco ficam por definir; zero é um valor definido. A área Financeiro reúne cachets fixos por fase e despesas manuais, com filtros por projeto/período, vistas por projeto e técnico, e CSV. Cachets não definidos estão assinalados. As despesas manuais não são repartidas por técnicos. Horas extra são referências, sem cálculo automático.
 
 Datas apresentadas e preenchidas em DD/MM/AAAA; horários em DD/MM/AAAA HH:MM. Os dados internos conservam ISO para validação e ordenação.
+
+
+## Beta 0.4
+Projetos podem ser movidos para Apagados e recuperados, sem perda do histórico. Não entram no planeamento nem no financeiro enquanto apagados. A recuperação verifica conflitos.
+
+A ficha da equipa organiza Dados, Administrativo, Tarifas, Documentos e Histórico. O campo horas incluídas define a referência para novas atribuições de freelancers. Na atribuição, o botão € permite definir o cachet, horas incluídas e valor extra, e reunir fases numa jornada. Cada jornada conta o intervalo contínuo entre primeira entrada e última saída, incluindo pausas e passagem da meia-noite, no fuso Europe/Lisbon. Não se aplicam descontos de refeição. As fases de dias distintos têm jornadas separadas por defeito; é possível reuni-las explicitamente. Tarifas antigas mantêm os valores fixos até serem configuradas. O financeiro e o CSV partilham os mesmos cálculos.
+
+O campo acesso Sim/Não guarda apenas a intenção de acesso. A geração e envio de códigos permanecem desativados enquanto a ativação do modelo de autenticação não for aprovada. Não foram criadas sessões nem acesso anónimo à equipa.
